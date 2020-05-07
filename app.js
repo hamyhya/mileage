@@ -6,19 +6,20 @@ console.log('Waktu yang ditempuh: ' +diffTime(dt1, dt2) +' Detik')
 
 var time = diffTime(dt1, dt2)
 var finalDistance
-if(time >= 0){
-    finalDistance = 6 * 5 * 60
+if(time < 300){
+    finalDistance = 6*5*60 //jarak 5 menit pertama
 
-    if(time >300){
-        finalDistance = (6*5*60) + (8*10*60)
+}else if(time >900){
+    finalDistance = (8*10*60) 
+
+    var speedUp = (time - 900) / 600
+    for(i = 0; i < speedUp; i++){
+         
+        finalDistance += (8+i)*10*60 //jarak setiap kelipatan 10 menit setelah 15 menit
         
-        if(time >900){
-            var speedUp = (time - 900) / 600
-            for(i = 0; i < speedUp; i++){
-                finalDistance += (8+i)*10*60
-            } 
-        }
     }
+}else if(time < 900){
+    finalDistance = (8*10*60) + (6*5*60) //jarak setelah 5 menit
+} 
 
-    console.log('Jarak yang ditempuh: ' +finalDistance / 1000 +' KM')
-}
+console.log('Jarak yang ditempuh: ' +finalDistance / 1000 +' KM')
